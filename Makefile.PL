@@ -31,20 +31,26 @@ our $rBeta = 101;
 
 ## run cwb-config to check installed CWB version
 my $version = `'$config_util' --version 2>/dev/null`;
-die 
-  "Can't run cwb-config program.\n",
-  "Please make sure that an up-to-date version of the IMS Open Corpus Workbench has been installed and/or use the --config option to specify the full path to the cwb-config program.\n"
-  unless defined $version and $version =~ /^([0-9])\.([0-9]{1,2})(\.b?([0-9]+))?$/;
+unless (defined $version && $version =~ /^([0-9])\.([0-9]{1,2})(\.b?([0-9]+))?$/) {
+    print STDERR
+      "Can't run cwb-config program.\n",
+        "Please make sure that an up-to-date version of the IMS Open Corpus Workbench has been installed and/or use the --config option to specify the full path to the cwb-config program.\n";
+    exit 1;
+}
+
 
 our $MajorVersion = $1;
 our $MinorVersion = $2;
 our $BetaVersion = $4 || 0;
 chomp($version);
 
-die "Error: need CWB version ", version_string($rMajor, $rMinor, $rBeta), " or newer, but only $version is installed.\n"
-  unless $MajorVersion > $rMajor 
-    or ($MajorVersion == $rMajor and
-          ($MinorVersion > $rMinor or $MinorVersion == $rMinor and $BetaVersion >= $rBeta));
+unless ($MajorVersion > $rMajor
+    || ($MajorVersion == $rMajor &&
+        ($MinorVersion > $rMinor || $MinorVersion == $rMinor && $BetaVersion >= $rBeta))) {
+    print STDERR "Error: need CWB version ",
+      version_string($rMajor, $rMinor, $rBeta), " or newer, but only $version is installed.\n";
+    exit 1;
+}
 
 ## obtain relevant configuration options from cwb-config
 our $prefix = `'$config_util' --prefix`;

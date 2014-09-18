@@ -79,5 +79,6 @@ t/41_ceql_string.t
 t/42_ceql_grammar.t
 t/43_ceql_benchmark.t
 t/44_ceql_bncweb.t
+lib/Alt/CWB/ambs.pm
 META.yml                                 Module YAML meta-data (added by MakeMaker)
 META.json                                Module JSON meta-data (added by MakeMaker)

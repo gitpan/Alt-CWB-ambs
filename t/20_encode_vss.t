@@ -2,7 +2,7 @@
 ## Test automatic corpus encoding and indexing with CWB::Encoder
 
 use Test::More tests => 6;
-
+use File::Path qw.make_path remove_tree.;
 use CWB;
 use CWB::Encoder;
 use File::Compare qw(compare compare_text);
@@ -12,7 +12,8 @@ use Time::HiRes qw(time);
 our $reg_dir = "tmp/registry";
 our $data_dir = "tmp/vss";
 our $vrt_file = "data/vrt/VeryShortStories.vrt";
-mkdir $reg_dir unless -d $reg_dir;
+
+make_path($reg_dir) unless -d $reg_dir;
 
 our $enc = new CWB::Encoder "VSS";
 isa_ok($enc, CWB::Encoder, "create CWB::Encoder object"); # T1
@@ -89,4 +90,4 @@ my $line = <$fh>;
 like($line, qr/Very Short Stories/, "contents of .info file"); # T6
 $fh->close;
 
-
+remove_tree($reg_dir);

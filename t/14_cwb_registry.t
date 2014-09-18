@@ -3,6 +3,8 @@
 
 use Test::More tests => 18;
 
+use File::Path qw(remove_tree);
+
 use CWB;
 use File::Compare;
 
@@ -54,9 +56,12 @@ $dickens->line_comment("test-fr", "one alignment per corpus pair");         # wi
 $dickens->set_comments("word", "", "POSITIONAL ATTRIBUTES", "");            # modify block comment for 'word' attribute
 $dickens->add_comments("p", "FURTHER COMMENTS ADDED BY CWB::RegistryFile"); # extend block comment for 'p' attribute
 
+mkdir "tmp" unless -d "tmp";
 our $reg_file = "tmp/dickens.mod";
 unlink($reg_file) if -f $reg_file;
 $dickens->write($reg_file);             # save modified registry entry
 $ok = (compare($reg_file, "data/registry/dickens.ref") == 0);
 diag("check output file tmp/dickens.mod against reference data/registry/dickens.ref") unless $ok;
 ok($ok, "modifications on registry entry (check against reference file)"); # T18
+
+remove_tree "tmp";
