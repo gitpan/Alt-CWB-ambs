@@ -81,18 +81,18 @@ print "Configuraion saved to file $config_file\n";
 
 ## now we can let MakeMaker generate the makefile
 WriteMakefile(
-              'NAME' => "Alt::CWB::ambs",
+              'NAME'         => "Alt::CWB::ambs",
               'VERSION_FROM' => "lib/Alt/CWB/ambs.pm",
-              'EXE_FILES' => ["script/cwb-make",
-                              "script/cwb-regedit",
-                              "script/cwb-align-import"],
-              'META_MERGE' => {
-                               "meta-spec" => { version => 2 },
-                               no_index => {
-                                            directory => [ 'lib/CWB/' ],
-                                            file      => [ 'lib/CWB.pm' ],
-                                           },
-                              },
+              'EXE_FILES'    => ["script/cwb-make",
+                                 "script/cwb-regedit",
+                                 "script/cwb-align-import"],
+              'META_MERGE'   => {
+                                 "meta-spec" => { version => 2 },
+                                 "no_index"  => {
+                                                 directory => [ 'lib/CWB/'   ],
+                                                 file      => [ 'lib/CWB.pm' ],
+                                                },
+                                },
              );
 
 

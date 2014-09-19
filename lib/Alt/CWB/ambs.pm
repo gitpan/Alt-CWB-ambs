@@ -1,6 +1,6 @@
 package Alt::CWB::ambs;
 
-our $VERSION = v2.2.102.2;
+our $VERSION = '2.2.102.4';
 
 1;
 
@@ -19,8 +19,7 @@ two modules to work with CWB version 3.0.x. Unfortunately they are not
 available on CPAN, and therefore it is not possible to depend on them.
 
 This B<ALTERNATE> distribution is exactly the same code as the one
-prepared by Stefan Evert and company. There are, nevertheless, some
-bug fixes.
+prepared by Stefan Evert and company.
 
 =head1 COPYRIGHT
 
