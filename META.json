@@ -17,7 +17,7 @@
       "directory" : [
          "t",
          "inc",
-         "lib/CWB"
+         "lib/CWB/"
       ],
       "file" : [
          "lib/CWB.pm"
@@ -36,5 +36,5 @@
       }
    },
    "release_status" : "stable",
-   "version" : "v2.2.102.1"
+   "version" : "v2.2.102.2"
 }
